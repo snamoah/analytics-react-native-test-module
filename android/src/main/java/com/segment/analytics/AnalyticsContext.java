@@ -126,7 +126,7 @@ public class AnalyticsContext extends ValueMap {
    * Context}. The {@link Analytics} client can be called from anywhere, so the returned instances
    * is thread safe.
    */
-  static synchronized AnalyticsContext create(
+  public static synchronized AnalyticsContext create(
       Context context, Traits traits, boolean collectDeviceId) {
     AnalyticsContext analyticsContext =
         new AnalyticsContext(new NullableConcurrentHashMap<String, Object>());
@@ -157,7 +157,7 @@ public class AnalyticsContext extends ValueMap {
     super(delegate);
   }
 
-  void attachAdvertisingId(Context context, CountDownLatch latch, Logger logger) {
+  public void attachAdvertisingId(Context context, CountDownLatch latch, Logger logger) {
     // This is done as an extra step so we don't run into errors like this for testing
     // http://pastebin.com/gyWJKWiu.
     if (isOnClassPath("com.google.android.gms.ads.identifier.AdvertisingIdClient")) {

@@ -76,15 +76,14 @@ public class Traits extends ValueMap {
    * Create a new Traits instance with an anonymous ID. Analytics client can be called on any
    * thread, so this instance is thread safe.
    */
-  static Traits create() {
+  public static Traits create() {
     Traits traits = new Traits(new NullableConcurrentHashMap<String, Object>());
     traits.putAnonymousId(UUID.randomUUID().toString());
     return traits;
   }
 
   /** For deserialization from disk by {@link Traits.Cache}. */
-  @Private
-  Traits(Map<String, Object> delegate) {
+  public Traits(Map<String, Object> delegate) {
     super(delegate);
   }
 
@@ -399,14 +398,29 @@ public class Traits extends ValueMap {
     }
   }
 
-  static class Cache extends ValueMap.Cache<Traits> {
+  public static class Cache extends ValueMap.Cache<Traits> {
 
     // todo: remove. This is legacy behaviour from before we started namespacing the entire shared
     // preferences object and were namespacing keys instead.
     private static final String TRAITS_CACHE_PREFIX = "traits-";
 
-    Cache(Context context, Cartographer cartographer, String tag) {
+    public Cache(Context context, Cartographer cartographer, String tag) {
       super(context, cartographer, TRAITS_CACHE_PREFIX + tag, tag, Traits.class);
+    }
+
+    @Override
+    public boolean isSet() {
+      return super.isSet();
+    }
+
+    @Override
+    public Traits get() {
+      return super.get();
+    }
+
+    @Override
+    public void set(Traits value) {
+      super.set(value);
     }
 
     @Override

@@ -70,7 +70,7 @@ public class Properties extends ValueMap {
   }
 
   // For deserialization
-  Properties(Map<String, Object> delegate) {
+  public Properties(Map<String, Object> delegate) {
     super(delegate);
   }
 

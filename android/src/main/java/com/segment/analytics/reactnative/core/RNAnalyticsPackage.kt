@@ -33,13 +33,8 @@ import com.facebook.react.uimanager.ReactShadowNode
 import com.facebook.react.uimanager.ViewManager
 
 class RNAnalyticsPackage : ReactPackage {
-    override fun createViewManagers(context: ReactApplicationContext): List<ViewManager<View, ReactShadowNode>> {
+    override fun createViewManagers(context: ReactApplicationContext): List<ViewManager<View, ReactShadowNode<*>>> {
         return emptyList()
-    }
-
-
-    override fun createJSModules(): MutableList<Class<out JavaScriptModule>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun createNativeModules(context: ReactApplicationContext): List<NativeModule> {
