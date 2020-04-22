@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
+ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
 	package
-		ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:11-59
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
+		ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:11-59
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
+		ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
 	android:versionCode
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml:1:1-61
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml:1:1-61
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
 uses-sdk
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		ADDED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
-		INJECTED from /Users/samuel/Documents/codes/analytics-react-native/packages/core/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		ADDED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/samuel/bitwala/main/native/node_modules/@segment/analytics-react-native/android/src/main/AndroidManifest.xml

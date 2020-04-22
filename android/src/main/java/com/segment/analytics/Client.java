@@ -36,7 +36,7 @@ import java.net.HttpURLConnection;
 import java.util.zip.GZIPOutputStream;
 
 /** HTTP client which can upload payloads and fetch project settings from the Segment public API. */
-class Client {
+public class Client {
 
   final ConnectionFactory connectionFactory;
   final String writeKey;
@@ -88,7 +88,7 @@ class Client {
     };
   }
 
-  Client(String writeKey, ConnectionFactory connectionFactory) {
+  public Client(String writeKey, ConnectionFactory connectionFactory) {
     this.writeKey = writeKey;
     this.connectionFactory = connectionFactory;
   }
@@ -98,7 +98,7 @@ class Client {
     return createPostConnection(connection);
   }
 
-  Connection attribution() throws IOException {
+  public Connection attribution() throws IOException {
     HttpURLConnection connection = connectionFactory.attribution(writeKey);
     return createPostConnection(connection);
   }
@@ -135,10 +135,10 @@ class Client {
    * Wraps an HTTP connection. Callers can either read from the connection via the {@link
    * InputStream} or write to the connection via {@link OutputStream}.
    */
-  abstract static class Connection implements Closeable {
-    final HttpURLConnection connection;
+  public abstract static class Connection implements Closeable {
+    public HttpURLConnection connection;
     final InputStream is;
-    final OutputStream os;
+    public OutputStream os;
 
     Connection(HttpURLConnection connection, InputStream is, OutputStream os) {
       if (connection == null) {

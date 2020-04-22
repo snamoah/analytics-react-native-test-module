@@ -74,10 +74,12 @@ class AnalyticsActivityLifecycleCallbacks implements Application.ActivityLifecyc
   public void onActivityCreated(Activity activity, Bundle bundle) {
     analytics.runOnMainThread(IntegrationOperation.onActivityCreated(activity, bundle));
 
+    Log.d("ADJUST", "even before any of these checks start");
     if (!trackedApplicationLifecycleEvents.getAndSet(true)
         && shouldTrackApplicationLifecycleEvents) {
       numberOfActivities.set(0);
       firstLaunch.set(true);
+      Log.d("ADJUST", "Value of attribution before lifecycle hook is " + this.trackAttributionInformation.toString());
       analytics.trackApplicationLifecycleEvents();
 
       Log.d("ADJUST NATIVE ANDROID", "Value of trackAttributionInformation is: this version=" + this.trackAttributionInformation.toString() + ", param=" + trackAttributionInformation.toString());

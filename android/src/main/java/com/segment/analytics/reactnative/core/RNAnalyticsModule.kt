@@ -24,18 +24,33 @@
 
 package com.segment.analytics.reactnative.core
 
+import android.app.Application
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.util.Log
 import com.facebook.react.bridge.*
 import com.segment.analytics.*
 import com.segment.analytics.Properties
+import com.segment.analytics.integrations.Logger
+import com.segment.analytics.internal.Utils
 import com.segment.analytics.internal.Utils.getSegmentSharedPreferences
+import java.io.BufferedWriter
+import java.io.IOException
+import java.io.OutputStreamWriter
+import java.io.Writer
 import java.util.*
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 
 class RNAnalyticsModule(context: ReactApplicationContext): ReactContextBaseJavaModule(context) {
     override fun getName() = "RNAnalytics"
+    private val advertisingIdLatch = CountDownLatch(1)
+    private val logger = Logger.with(Analytics.LogLevel.NONE)
+    private val cartographer = Cartographer.INSTANCE
+    private var analyticsContext: AnalyticsContext? = null
+
+    var client: Client? = null
 
     private val analytics
         get() = Analytics.with(reactApplicationContext)
@@ -44,6 +59,8 @@ class RNAnalyticsModule(context: ReactApplicationContext): ReactContextBaseJavaM
         private var singletonJsonConfig: String? = null
         private var versionKey = "version"
         private var buildKey = "build"
+        private const val collectDeviceID = Utils.DEFAULT_COLLECT_DEVICE_ID
+        private const val TRACKED_ATTRIBUTION_KEY = "tracked_attribution"
     }
 
     private fun getPackageInfo(): PackageInfo {
@@ -76,6 +93,8 @@ class RNAnalyticsModule(context: ReactApplicationContext): ReactContextBaseJavaM
             installedProperties[versionKey] = currentVersion
             installedProperties[buildKey] = currentBuild
             analytics.track("Application Installed", installedProperties)
+            Log.d("ADJUST NATIVE ANDROID", "Value of trackAttributionInformation is: this version=")
+
         } else if (currentBuild != previousBuild) {
             var updatedProperties = Properties()
             updatedProperties[versionKey] = currentVersion
@@ -96,6 +115,47 @@ class RNAnalyticsModule(context: ReactApplicationContext): ReactContextBaseJavaM
         editor.putString(versionKey, currentVersion)
         editor.putInt(buildKey, currentBuild)
         editor.apply()
+    }
+
+
+    private fun waitForAdvertisingId() {
+        try {
+            advertisingIdLatch.await(15, TimeUnit.SECONDS)
+        } catch (e: InterruptedException) {
+            logger.error(e, "Thread interrupted while waiting for advertising ID.")
+        }
+        if (advertisingIdLatch.count == 1L) {
+            logger.debug(
+                    "Advertising ID may not be collected because the API did not respond within 15 seconds.")
+        }
+    }
+
+
+    private fun trackAttributionInformation(writeKey: String?) {
+        val trackedAttribution = BooleanPreference(getSegmentSharedPreferences(reactApplicationContext, writeKey), TRACKED_ATTRIBUTION_KEY, false)
+
+        if (trackedAttribution.get()) {
+            return
+        }
+
+        waitForAdvertisingId()
+
+        var connection: Client.Connection? = null
+        try {
+                connection = analytics.client.attribution()
+                // Write the request body.
+                val writer: Writer = BufferedWriter(OutputStreamWriter(connection.os))
+                cartographer.toJson(analyticsContext, writer)
+                // Read the response body.
+                val map: Map<String, Any> = cartographer.fromJson(Utils.buffer(Utils.getInputStream(connection.connection)))
+                val properties = Properties(map)
+                analytics.track("Install Attributed", properties)
+                trackedAttribution.set(true)
+        } catch (e: IOException) {
+            logger.error(e, "Unable to track attribution information. Retrying on next launch.")
+        } finally {
+            Utils.closeQuietly(connection)
+        }
     }
 
     @ReactMethod
@@ -153,8 +213,23 @@ class RNAnalyticsModule(context: ReactApplicationContext): ReactContextBaseJavaM
             return promise.reject("E_SEGMENT_ERROR", e)
         }
 
+
+        val traitsCache = Traits.Cache(reactApplicationContext, cartographer, writeKey)
+        if (!traitsCache.isSet || traitsCache == null) {
+            val traits = Traits.create()
+            traitsCache.set(traits)
+        }
+
+
+        val analyticsContext = AnalyticsContext.create(reactApplicationContext, traitsCache.get(), collectDeviceID)
+        analyticsContext.attachAdvertisingId(reactApplicationContext, advertisingIdLatch, logger)
+
         if(options.getBoolean("trackAppLifecycleEvents")) {
             this.trackApplicationLifecycleEvents(writeKey)
+        }
+
+        if(options.getBoolean("trackAttributionData")) {
+            this.trackAttributionInformation(writeKey)
         }
 
         singletonJsonConfig = json
